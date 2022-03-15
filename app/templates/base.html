@@ -4,7 +4,7 @@
 		<title> {{ title }} - Jam in the can</title>
 	</head>
 	<body>
-		<div>Jam in the can: <a href="/index">Home</a></div>
+		<div>Jam in the can: <a href="{{ url_for('index')}}">Home</a></div>
 		{% block content %}{% endblock %}
 	</body>
 </html>
