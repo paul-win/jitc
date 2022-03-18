@@ -1,8 +1,8 @@
-"""init db
+"""restart + expanded event model
 
-Revision ID: 6fac8b5d6504
+Revision ID: 4cbddccc099f
 Revises: 
-Create Date: 2022-03-17 16:48:41.961383
+Create Date: 2022-03-18 19:45:47.419487
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '6fac8b5d6504'
+revision = '4cbddccc099f'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -41,6 +41,10 @@ def upgrade():
     sa.Column('event_end', sa.DateTime(), nullable=True),
     sa.Column('artist_id', sa.Integer(), nullable=True),
     sa.Column('venue_id', sa.Integer(), nullable=True),
+    sa.Column('price', sa.Numeric(precision=2), nullable=False),
+    sa.Column('ticket_link', sa.String(length=512), nullable=True),
+    sa.Column('ages', sa.String(length=8), nullable=True),
+    sa.Column('about', sa.String(length=2048), nullable=True),
     sa.Column('updated', sa.DateTime(), nullable=False),
     sa.ForeignKeyConstraint(['artist_id'], ['artist.id'], ),
     sa.ForeignKeyConstraint(['venue_id'], ['venue.id'], ),
