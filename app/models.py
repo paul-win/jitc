@@ -12,6 +12,7 @@ class Event(db.Model):
     jams = db.relationship('Jam', primaryjoin="Event.id==Jam.event_id", order_by="Jam.track_num")
     venue_id = db.Column(db.Integer, db.ForeignKey('venue.id'))
     venue = db.relationship('Venue', foreign_keys=[venue_id])
+    about = db.Column(db.String(500))
     updated = db.Column(db.DateTime, index=True, default=datetime.utcnow, nullable=False)
 
     def __repr__(self):
