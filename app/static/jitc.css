@@ -9,15 +9,27 @@ h1, h2, h3, h4, h5, h6 {
     font-family:Tekon;
 }
 
-.bg-dark {
-    --bs-bg-opacity: 1;
-    background-color: #08605f!important;
-}
-
 header {
     font-family:Tekon;
 }
 
 .navbar-brand {
     padding-top: 0; /* wasn't aligning with other navbar elements with bootstrap padding on top */ 
+}
+
+.bg-dark {
+    --bs-bg-opacity: 1;
+    background-color: #723D46!important;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #E26D5C;
+    border-color: #723D46;
+}
+
+.btn-secondary {
+    color: #fff;
+    background-color: #C9CBA3;
+    border-color: #FFE1AB;
 }
