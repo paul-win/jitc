@@ -9,17 +9,18 @@ class Event(db.Model):
     event_end = db.Column(db.DateTime, nullable=True)
     artist_id = db.Column(db.Integer, db.ForeignKey('artist.id'))
     artist = db.relationship('Artist', foreign_keys=[artist_id])
-    jams = db.relationship('Jam', primaryjoin="Event.id==Jam.event_id", order_by="Jam.track_num")
+    jams = db.relationship('Jam', back_populates="event")
     venue_id = db.Column(db.Integer, db.ForeignKey('venue.id'))
     venue = db.relationship('Venue', foreign_keys=[venue_id])
     price = db.Column(db.Numeric(precision=2), default=0, nullable=False)
     ticket_link = db.Column(db.String(512))
     ages = db.Column(db.String(8))
     about = db.Column(db.String(2048))
+    media_dir = db.Column(db.String(128))
     updated = db.Column(db.DateTime, index=True, default=datetime.utcnow, nullable=False)
 
     def __repr__(self):
-        return '<Event: {}-{}>'.format(self.title, self.event_start)
+        return '<Event: {}-{}>'.format(self.title, self.event_door)
 
 
 class Artist(db.Model):
@@ -44,11 +45,12 @@ class Venue(db.Model):
 class Jam(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     event_id = db.Column(db.Integer, db.ForeignKey('event.id'))
-    event = db.relationship('Event', foreign_keys=[event_id])
+    event = db.relationship('Event', back_populates="jams")
     artist_id = db.Column(db.Integer, db.ForeignKey('artist.id'))
     artist = db.relationship('Artist', foreign_keys=[artist_id])
     track_num = db.Column(db.SmallInteger, nullable=False)
     title = db.Column(db.String(120))
+    file = db.Column(db.String(128))
 
     def __repr__(self):
         return '<Jam: {}-{}.{}>'.format(self.artist.name, self.track_num, self.title)

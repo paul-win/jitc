@@ -28,8 +28,20 @@ header {
     border-color: #723D46;
 }
 
+.btn-primary:hover {
+    color: #fff;
+    background-color: #723D46;
+    border-color: #472D30;
+}
+
 .btn-secondary {
     color: #fff;
     background-color: #C9CBA3;
-    border-color: #FFE1AB;
+    border-color: #E26D5C;
+}
+
+.btn-secondary:hover {
+    color: #fff;
+    background-color: #472D30;
+    border-color: #723D46;
 }
