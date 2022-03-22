@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% with learn_more=False %}
+    {% include '_mission_statement.html' %}
+    {% endwith %}
+    <hr>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <h2 class="text-center">Organization Goals</h2>
+            <div class="card text-center">
+                <h4 class="card-header jitc-light">Phase 1</h4>
+                <div class="card-body">
+                    <p class="card-text lead">Live recordings of local musicians and artists from the Cincinnati area.</p>
+                </div>
+            </div>
+            <div class="card text-center">
+                <h4 class="card-header jitc-med-light">Phase 2</h4>
+                <div class="card-body">
+                    <p class="card-text lead">Recorded artists are supported in the community with gigs at Historic Findlay Market and other select venues around the city.</p>
+                </div>
+            </div>
+            <div class="card text-center">
+                <h4 class="card-header jitc-medium">Phase 3</h4>
+                <div class="card-body">
+                    <p class="card-text lead">A commemorative compilation vinyl pressing of the artists.</p>
+                </div>
+            </div>
+            <div class="card text-center">
+                <h4 class="card-header jitc-dark">Phase 4</h4>
+                <div class="card-body">
+                    <p class="card-text lead">Proceeds from the album, live shows, and donations fund the purchase of instruments, subsidize lessons and mentorships for the underprivileged youth in the Cincinnati Tri State area.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+{% endblock %}

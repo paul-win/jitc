@@ -45,3 +45,26 @@ header {
     background-color: #472D30;
     border-color: #723D46;
 }
+
+.jitc-light {
+    background-color: rgb(255, 225, 171, .75)!important;
+}
+.jitc-med-light {
+    background-color: rgb(201, 203, 163, .75)!important;
+}
+.jitc-medium {
+    background-color: rgb(226, 109, 92, .75)!important;
+}
+.jitc-dark {
+    background-color: rgb(114, 61, 70, .75)!important;
+}
+
+.non-relative-pos {
+    position: inherit;
+}
+
+.carousel {
+    border-radius: 7px;
+    border: 2px solid #723D46;
+    padding: 3px;
+}

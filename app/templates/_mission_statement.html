@@ -1,5 +1,4 @@
 	<div class="container-fluid">
-		<hr>
 		<div class="row">
 			<div class="col-md-3"></div>
 			<div class="col-md-6">
@@ -7,10 +6,11 @@
 				<p class="lead text-center">Jam in the Can showcases emerging local arts, boosts community engagement and provides the know-how, network, and resources for the next generation of artists.</p>
 				<div class="d-grid gap-2 col-6 mx-auto">
 					<a class="btn btn-lg btn-primary" href="{{ url_for('support') }}">Donate</a>
+					{% if learn_more %}
 					<a class="btn btn-secondary" href="{{ url_for('mission') }}">Learn more</a>
+					{% endif %}
 				</div>
 			</div>
 			<div class="col-md-3"></div>
 		</div>
-		<hr>
 	</div>

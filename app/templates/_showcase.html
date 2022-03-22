@@ -1,0 +1,14 @@
+<div class="carousel-item {% if event.active_item %}active{% endif %}">
+    {% if event.cover_card_path() %}
+    <img src="{{ event.cover_card_path()}}" class="d-block w-100" alt="{{ event.verbose_title() }}">
+    {% endif %}
+    <div class="container">
+        <div class="carousel-caption text-end non-relative-pos">
+            {% if not event.cover_card_path() %}
+            <!-- <h1>Example headline.</h1> -->
+            <p>{{ event.verbose_title() }}</p>
+            {% endif %}
+            <p><a class="btn btn-lg btn-secondary" href="#">Learn more</a></p>
+        </div>
+    </div>
+</div>

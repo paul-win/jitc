@@ -2,5 +2,25 @@
 
 {% block content %}
 	<h1 class="display-1 text-center">Jam in the Can</h1>
+	<hr>
+	{% with learn_more=True %}
 	{% include '_mission_statement.html' %}
+	{% endwith %}
+	<hr>
+	<h2 class="text-center">Showcase</h2>
+	<div id="showcaseCarousel" class="carousel slide" data-bs-ride="carousel">
+		<div class="carousel-inner">
+			{% for event in events %}
+        		{% include '_showcase.html' %}
+    		{% endfor %}
+		</div>
+		<button class="carousel-control-prev" type="button" data-bs-target="#showcaseCarousel" data-bs-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Previous</span>
+		</button>
+		<button class="carousel-control-next" type="button" data-bs-target="#showcaseCarousel" data-bs-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Next</span>
+		</button>
+	</div>
 {% endblock %}

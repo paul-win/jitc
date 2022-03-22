@@ -1,5 +1,6 @@
 from app import db
 from datetime import datetime
+import os
 
 class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -17,10 +18,31 @@ class Event(db.Model):
     ages = db.Column(db.String(8))
     about = db.Column(db.String(2048))
     media_dir = db.Column(db.String(128))
+    active_item = False
     updated = db.Column(db.DateTime, index=True, default=datetime.utcnow, nullable=False)
 
     def __repr__(self):
         return '<Event: {}-{}>'.format(self.title, self.event_door)
+    def verbose_title(self):
+        return 'Jam in the Can presents: {} @ {}, {}'.format(self.title, self.venue.name, self.event_door.strftime('%A %B %d, %Y %I:%M%p'))
+    def get_media_dir_path(self):
+        if self.media_dir:
+            return os.getcwd() + '/app/' + self.media_dir
+        else:
+            return False
+    def media_files(self):
+        dir_path = self.get_media_dir_path()
+        if dir_path:
+            return os.listdir(dir_path)
+        else:
+            return []
+    def cover_card_path(self):
+        dir_path = self.get_media_dir_path()
+        file_path = dir_path + 'cover_card.jpg'
+        if dir_path and os.path.exists(file_path):
+            return self.media_dir + 'cover_card.jpg'
+        else:
+            return False
 
 
 class Artist(db.Model):
