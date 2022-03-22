@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2 class="display-1 text-center">
+        Coming soon!
+    </h2>
+    <h4 class="text-center">
+        <i class="bi bi-boombox"></i>
+        <small>...page under construction...</small>
+        <i class="bi bi-boombox"></i>
+    </h4>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <a class="btn btn-lg btn-primary" href="{{ url_for('index') }}">Go to Home page</a>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+{% endblock %}

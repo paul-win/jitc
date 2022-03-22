@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="text-center">Jam in the Can presents:</h1>
+<h1 class="display-1 text-center">{{ event.title }}</h1>
+<h3 class="text-center"><small>@ {{ event.venue.name }}</small></h3>
+<h3 class="text-center"><small>{{ event.event_door.strftime('%A %B %d, %Y %I:%M%p') }}</small></h3>
+<hr>
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-6">
+        <table class="table">
+            {% if event.ticket_link %}
+            <tr>
+                <th>Tickets:</th>
+                <td>${{ event.price_two_places() }} <a href="{{ event.ticket_link }}" target="_blank">{{ event.ticket_link }}</a></td>
+            </tr>
+            {% endif %}
+        </table>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+{% endblock %}

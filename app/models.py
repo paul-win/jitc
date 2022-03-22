@@ -1,11 +1,12 @@
 from app import db
-from datetime import datetime
+from datetime import datetime, timedelta
 import os
+from markupsafe import escape
 
 class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(120))
-    event_door = db.Column(db.DateTime, nullable=True)
+    event_door = db.Column(db.DateTime, nullable=False)
     event_start = db.Column(db.DateTime, nullable=True)
     event_end = db.Column(db.DateTime, nullable=True)
     artist_id = db.Column(db.Integer, db.ForeignKey('artist.id'))
@@ -43,7 +44,13 @@ class Event(db.Model):
             return self.media_dir + 'cover_card.jpg'
         else:
             return False
-
+    def upcoming(self):
+        return self.event_door.date() >= (datetime.utcnow() - timedelta(hours=5)).date()
+    def price_two_places(self):
+        if self.price:
+            return round(self.price, 2)
+        else:
+            return None
 
 class Artist(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -51,6 +58,8 @@ class Artist(db.Model):
     
     def __repr__(self):
         return '<Artist: {}>'.format(self.name)
+    def safe_name(self):
+        return escape(self.name)
 
 class Venue(db.Model):
     id = db.Column(db.Integer, primary_key=True)

@@ -2,19 +2,15 @@ body {
     padding-top: 4rem;
     padding-bottom: 3rem;
     /* color: #598381; */
-    font-family: Montserrat;
+    font-family: 'Montserrat', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family:Tekon;
+    font-family:'Teko', sans-serif;
 }
 
 header {
-    font-family:Tekon;
-}
-
-.navbar-brand {
-    padding-top: 0; /* wasn't aligning with other navbar elements with bootstrap padding on top */ 
+    font-family:'Teko', sans-serif;
 }
 
 .bg-dark {
@@ -45,6 +41,12 @@ header {
     background-color: #472D30;
     border-color: #723D46;
 }
+a {
+    color:#723D46;
+}
+a:hover {
+    color:#E26D5C;
+}
 
 .jitc-light {
     background-color: rgb(255, 225, 171, .75)!important;
@@ -67,4 +69,9 @@ header {
     border-radius: 7px;
     border: 2px solid #723D46;
     padding: 3px;
+}
+
+.card {
+    border: 1px solid #723D46;
+    margin-bottom: 2px;
 }

@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import redirect, render_template, url_for
 from app import app
 from app.models import Event
 
@@ -12,15 +12,23 @@ def index():
 
 @app.route('/events')
 def events():
-    return render_template('index.html', title='Events')
+    return render_template('under_construct.html', title='Events')
+
+@app.route('/events/<year>/<month>/<day>/<artist>/<int:event_id>')
+def event(year, month, day, artist, event_id):
+    ev = Event.query.get(event_id)
+    if not ev:
+        return redirect(url_for('.index'))
+    else:
+        return render_template('event.html', title=ev.title, event=ev)
 
 @app.route('/jams')
 def jams():
-    return render_template('index.html', title='Jams')
+    return render_template('under_construct.html', title='Jams')
 
 @app.route('/support')
 def support():
-    return render_template('index.html', title='Support')
+    return render_template('under_construct.html', title='Support')
 
 @app.route('/mission')
 def mission():

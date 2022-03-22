@@ -4,11 +4,13 @@
     {% endif %}
     <div class="container">
         <div class="carousel-caption text-end non-relative-pos">
-            {% if not event.cover_card_path() %}
-            <!-- <h1>Example headline.</h1> -->
-            <p>{{ event.verbose_title() }}</p>
-            {% endif %}
-            <p><a class="btn btn-lg btn-secondary" href="#">Learn more</a></p>
+            <div class="btn-group" role="group" aria-label="Basic example">
+                {% if event.ticket_link and event.upcoming() %}
+                <a class="btn btn-lg btn-primary" href="{{ event.ticket_link }}" target="_blank">Get Tix</a>
+                {% endif %}
+                <a class="btn btn-lg btn-secondary" style="z-index: 2;"
+                href="{{ url_for('event', year=event.event_door.year, month=event.event_door.month, day=event.event_door.day, artist=event.artist.safe_name(), event_id=event.id) }}">Learn more</a>
+            </div>
         </div>
     </div>
 </div>
