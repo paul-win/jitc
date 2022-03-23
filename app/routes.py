@@ -28,7 +28,7 @@ def jams():
 
 @app.route('/support')
 def support():
-    return render_template('under_construct.html', title='Support')
+    return render_template('support.html', title='Support')
 
 @app.route('/mission')
 def mission():

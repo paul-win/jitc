@@ -1,7 +1,7 @@
 from app import db
 from datetime import datetime, timedelta
 import os
-from markupsafe import escape
+from markupsafe import escape, Markup
 
 class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -51,6 +51,8 @@ class Event(db.Model):
             return round(self.price, 2)
         else:
             return None
+    def about_html(self):
+        return Markup(self.about.replace('\n', '</p><p>'))
 
 class Artist(db.Model):
     id = db.Column(db.Integer, primary_key=True)

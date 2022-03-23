@@ -4,11 +4,12 @@
 <h1 class="text-center">Jam in the Can presents:</h1>
 <h1 class="display-1 text-center">{{ event.title }}</h1>
 <h3 class="text-center"><small>@ {{ event.venue.name }}</small></h3>
-<h3 class="text-center"><small>{{ event.event_door.strftime('%A %B %d, %Y %I:%M%p') }}</small></h3>
+<h3 class="text-center"><small>{{ event.event_door.strftime('%A %B %-d, %Y %-I:%M%p') }}</small></h3>
 <hr>
+{% if event.upcoming() %}
 <div class="row">
     <div class="col-md-2"></div>
-    <div class="col-md-6">
+    <div class="col-md-8">
         <table class="table">
             {% if event.ticket_link %}
             <tr>
@@ -16,7 +17,35 @@
                 <td>${{ event.price_two_places() }} <a href="{{ event.ticket_link }}" target="_blank">{{ event.ticket_link }}</a></td>
             </tr>
             {% endif %}
+            <tr>
+                <th>Venue:</th>
+                <td>
+                    <address>
+                        <strong>{{ event.venue.name }}</strong><br>
+                        {{ event.venue.street_address }}<br>
+                        {{ event.venue.city }}, {{ event.venue.state }} {{ event.venue.zip }}<br>
+                        <a href="https://goo.gl/maps/vbnmzV4MZvnKhVar9" target="_blank">Map <i class="bi bi-geo"></i></a>
+                    </address>
+                </td>
+            </tr>
+            <tr>
+                <th>Doors:</th>
+                <td>{{ event.event_door.strftime('%-I:%M%p') }}</td>
+            </tr>
+            <tr>
+                <th>Ages:</th>
+                <td>{{ event.ages }}</td>
+            </tr>
         </table>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+<hr>
+{% endif %}
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <p>{{ event.about_html() }}</p>
     </div>
     <div class="col-md-2"></div>
 </div>
