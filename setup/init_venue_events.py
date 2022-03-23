@@ -1,5 +1,5 @@
 
-qch = Venue(name="Queen City Hemp Warehouse", street_address="6 Kovach Dr #620",
+qch = Venue(name="Queen City Hemp", street_address="6 Kovach Dr #620",
 city="Cincinnati", state="OH", zip="45215")
 db.session.add(qch)
 
