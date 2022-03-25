@@ -69,7 +69,7 @@ class Venue(db.Model):
     street_address = db.Column(db.String(120))
     city = db.Column(db.String(64))
     state = db.Column(db.String(8))
-    zip = db.Column(db.SmallInteger)
+    zip = db.Column(db.String(16))
     info = db.Column(db.String(120))
 
     def __repr__(self):
