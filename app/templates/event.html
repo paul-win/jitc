@@ -8,8 +8,8 @@
 <hr>
 {% if event.upcoming() %}
 <div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-8 table-responsive">
+    <div class="col-lg-2 col-md-1"></div>
+    <div class="col-lg-8 col-md-10 table-responsive">
         <table class="table">
             {% if event.ticket_link %}
             <tr>
@@ -38,15 +38,15 @@
             </tr>
         </table>
     </div>
-    <div class="col-md-2"></div>
+    <div class="col-lg-2 col-md-1"></div>
 </div>
 <hr>
 {% endif %}
 <div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
+    <div class="col-lg-2 col-md-1"></div>
+    <div class="col-lg-8 col-md-10">
         <p>{{ event.about_html() }}</p>
     </div>
-    <div class="col-md-2"></div>
+    <div class="col-lg-2 col-md-1"></div>
 </div>
 {% endblock %}
