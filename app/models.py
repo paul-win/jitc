@@ -124,6 +124,7 @@ class Jam(db.Model):
     artist = db.relationship('Artist', foreign_keys=[artist_id])
     track_num = db.Column(db.SmallInteger, nullable=False)
     title = db.Column(db.String(120))
+    length = db.Column(db.Time)
     file = db.Column(db.String(128))
 
     def __repr__(self):
