@@ -89,3 +89,14 @@ a:hover {
     border: 1px solid #723D46;
     margin-bottom: 2px;
 }
+
+.carousel-top-caption {
+    position: absolute;
+    right: 15%;
+    top: 1.25rem;
+    left: 15%;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    color: #fff;
+    text-align: center;
+}

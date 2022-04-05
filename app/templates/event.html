@@ -3,30 +3,14 @@
 <!-- {% block body_style %}style="background-image: url({{ url_for('static', filename=event.cover_photo_path()) }});"{% endblock %} -->
 
 {% block content %}
-<div id="eventCarousel" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            {% if event.cover_photo_path() %}
-            <img src="{{ url_for('static', filename = event.cover_photo_path())}}" class="d-block w-100" alt="{{ event.verbose_title() }}">
-            {% endif %}
-            <div class="container">
-                <div class="carousel-caption text-start">
-                    <h1>Jam in the Can presents:</h1>
-                    <h1 class="display-1">{{ event.title }}</h1>
-                    <h3><small>@ {{ event.venue.name }}</small></h3>
-                    <h3><small>{{ event.event_door.strftime('%A %B %-d, %Y %-I:%M%p') }}</small></h3>   
-                </div>
-            </div>
-        </div>
+<div class="card bg-dark text-white">
+    {% if event.cover_photo_path() %}
+    <img class="card-img" src="{{ url_for('static', filename = event.cover_photo_path())}}" alt="{{ event.verbose_title() }}">
+    {% endif %}<!-- <img src="" class="d-block w-100" alt=""> -->
+    <div class="card-img-overlay">
+        <h1 class="card-title"><small></small>Jam in the Can presents:</small> {{ event.title }}</h1>
+        <h3 class="card-title">@ {{ event.venue.name }} {{ event.event_door.strftime('%A %B %-d, %Y %-I:%M%p') }}</h3>
     </div>
-    <!-- <button class="carousel-control-prev" type="button" data-bs-target="#showcaseCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#showcaseCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button> -->
 </div>
 
 <hr>
