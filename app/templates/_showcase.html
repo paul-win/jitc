@@ -1,6 +1,6 @@
 <div class="carousel-item {% if event.active_item %}active{% endif %}">
     {% if event.cover_card_path() %}
-    <img src="{{ event.cover_card_path()}}" class="d-block w-100" alt="{{ event.verbose_title() }}">
+    <img src="{{ url_for('static', filename = event.cover_card_path())}}" class="d-block w-100" alt="{{ event.verbose_title() }}">
     {% endif %}
     <div class="container">
         <div class="carousel-caption text-end non-relative-pos">

@@ -3,6 +3,8 @@ body {
     padding-bottom: 3rem;
     /* color: #598381; */
     font-family: 'Montserrat', sans-serif;
+    color: #FFE1AB;
+    background-color: #472D30;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -11,6 +13,10 @@ h1, h2, h3, h4, h5, h6 {
 
 header, strong {
     font-family:'Teko', sans-serif;
+}
+
+.jitc-text {
+    color: #FFE1AB!important;
 }
 
 .bg-dark {
@@ -33,16 +39,16 @@ header, strong {
 .btn-secondary {
     color: #fff;
     background-color: #C9CBA3;
-    border-color: #E26D5C;
+    border-color: #723D46;
 }
 
 .btn-secondary:hover {
     color: #fff;
     background-color: #472D30;
-    border-color: #723D46;
+    border-color: #E26D5C;
 }
 a {
-    color:#723D46;
+    color:#FFE1AB;
 }
 a:hover {
     color:#E26D5C;
@@ -50,22 +56,30 @@ a:hover {
 
 .jitc-light {
     background-color: rgb(255, 225, 171, .75)!important;
+    color: black;
 }
 .jitc-med-light {
     background-color: rgb(201, 203, 163, .75)!important;
+    color: black;
 }
 .jitc-medium {
     background-color: rgb(226, 109, 92, .75)!important;
+    color: black;
 }
 .jitc-dark {
     background-color: rgb(114, 61, 70, .75)!important;
+    color: black;
+}
+
+.card-text {
+    color: #472D30;
 }
 
 .non-relative-pos {
     position: inherit;
 }
 
-.carousel {
+.showcase {
     border-radius: 7px;
     border: 2px solid #723D46;
     padding: 3px;
