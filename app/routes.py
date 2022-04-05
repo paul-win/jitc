@@ -1,4 +1,6 @@
 from flask import redirect, render_template, url_for
+from sqlalchemy import func
+from datetime import datetime
 from app import app
 from app.models import Event
 
@@ -14,9 +16,13 @@ def index():
 def events():
     return render_template('under_construct.html', title='Events')
 
-@app.route('/events/<year>/<month>/<day>/<artist>/<int:event_id>')
-def event(year, month, day, artist, event_id):
-    ev = Event.query.get(event_id)
+@app.route('/events/<int:year>/<int:month>/<int:day>/<artist>')
+def event(year, month, day, artist):
+    dt = datetime(year, month, day)
+    evs = Event.query.filter(func.date(Event.event_door) == dt).all()
+    for e in evs:
+        if e.artist.name == artist:
+            ev = e
     if not ev:
         return redirect(url_for('.index'))
     else:

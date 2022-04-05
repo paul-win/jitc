@@ -9,7 +9,7 @@
                 <a class="btn btn-lg btn-primary" href="{{ event.ticket_link }}" target="_blank">Get Tix</a>
                 {% endif %}
                 <a class="btn btn-lg btn-secondary" style="z-index: 2;"
-                href="{{ url_for('event', year=event.event_door.year, month=event.event_door.month, day=event.event_door.day, artist=event.artist.safe_name(), event_id=event.id) }}">Learn more</a>
+                href="{{ url_for('event', year=event.event_door.year, month=event.event_door.month, day=event.event_door.day, artist=event.artist.safe_name()) }}">Learn more</a>
             </div>
         </div>
     </div>
