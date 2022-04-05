@@ -20,7 +20,7 @@ def event(year, month, day, artist, event_id):
     if not ev:
         return redirect(url_for('.index'))
     else:
-        return render_template('event.html', title=ev.title, event=ev)
+        return render_template('event.html', title=ev.title, event=ev, background=ev.cover_photo_path())
 
 @app.route('/jams')
 def jams():

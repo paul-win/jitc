@@ -28,22 +28,38 @@ class Event(db.Model):
         return 'Jam in the Can presents: {} @ {}, {}'.format(self.title, self.venue.name, self.event_door.strftime('%A %B %d, %Y %I:%M%p'))
     def get_media_dir_path(self):
         if self.media_dir:
-            return os.getcwd() + '/app/' + self.media_dir
+            return os.getcwd() + '/app/static/' + self.media_dir
         else:
-            return False
+            return ''
     def media_files(self):
         dir_path = self.get_media_dir_path()
         if dir_path:
             return os.listdir(dir_path)
         else:
             return []
-    def cover_card_path(self):
+    def get_file_path(self, filename):
         dir_path = self.get_media_dir_path()
-        file_path = dir_path + 'cover_card.jpg'
+        file_path = dir_path + filename
         if dir_path and os.path.exists(file_path):
-            return self.media_dir + 'cover_card.jpg'
+            return self.media_dir + filename
         else:
-            return False
+            return ''
+    def cover_card_path(self):
+        file_path = self.get_file_path('cover_card.jpg')
+        if file_path:
+            return file_path
+        else:
+            return ''
+    def cover_photo_path(self):
+        file_path = self.get_file_path('cover.jpg')
+        if file_path:
+            return file_path
+        else:
+            file_path = self.venue.cover_photo_path()
+            if file_path:
+                return file_path
+            else:
+                return ''
     def upcoming(self):
         return self.event_door.date() >= (datetime.utcnow() - timedelta(hours=5)).date()
     def price_two_places(self):
@@ -70,10 +86,35 @@ class Venue(db.Model):
     city = db.Column(db.String(64))
     state = db.Column(db.String(8))
     zip = db.Column(db.String(16))
+    media_dir = db.Column(db.String(128))
     info = db.Column(db.String(120))
 
     def __repr__(self):
         return '<Venue: {}>'.format(self.name)
+    def get_media_dir_path(self):
+        if self.media_dir:
+            return os.getcwd() + '/app/static/' + self.media_dir
+        else:
+            return ''
+    def media_files(self):
+        dir_path = self.get_media_dir_path()
+        if dir_path:
+            return os.listdir(dir_path)
+        else:
+            return []
+    def get_file_path(self, filename):
+        dir_path = self.get_media_dir_path()
+        file_path = dir_path + filename
+        if dir_path and os.path.exists(file_path):
+            return self.media_dir + filename
+        else:
+            return ''
+    def cover_photo_path(self):
+        file_path = self.get_file_path('cover.jpg')
+        if file_path:
+            return file_path
+        else:
+            return ''
 
 class Jam(db.Model):
     id = db.Column(db.Integer, primary_key=True)
