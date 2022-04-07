@@ -26,6 +26,8 @@ class Event(db.Model):
         return '<Event: {}-{}>'.format(self.title, self.event_door)
     def verbose_title(self):
         return 'Jam in the Can presents: {} @ {}, {}'.format(self.title, self.venue.name, self.event_door.strftime('%A %B %d, %Y %I:%M%p'))
+    def page_title(self):
+        return '{} - {}'.format(self.title, self.event_door.strftime('%A %B %d'))
     def get_media_dir_path(self):
         if self.media_dir:
             return os.getcwd() + '/app/static/' + self.media_dir
