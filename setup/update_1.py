@@ -2,8 +2,7 @@
 
 #add JitC-Pop-Tab-icon.png file to static/media/ folder
 #add cover.jpg file to static/media/cliftones_3_26_2022/ folder
-    #need decision on good photo of shop to use as default backdrop
-        ### if get good photo -> add as cover.jpg to static/media/qch/ folder (create folder)
+#add cover.jpg to static/media/qch/ folder (create folder)
 #create calumet media folder static/media/calumet_9_3_2021/
 #copy tracks into folder
 

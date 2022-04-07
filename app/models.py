@@ -24,10 +24,13 @@ class Event(db.Model):
 
     def __repr__(self):
         return '<Event: {}-{}>'.format(self.title, self.event_door)
-    def verbose_title(self):
-        return 'Jam in the Can presents: {} @ {}, {}'.format(self.title, self.venue.name, self.event_door.strftime('%A %B %d, %Y %I:%M%p'))
+    def verbose_title(self, include_time=True):
+        if include_time:
+            return 'Jam in the Can presents: {} @ {}, {}'.format(self.title, self.venue.name, self.event_door.strftime('%A %B %d, %Y %I:%M%p'))
+        else:
+            return 'Jam in the Can presents: {} @ {}, {}'.format(self.title, self.venue.name, self.event_door.strftime('%B %d, %Y'))
     def page_title(self):
-        return '{} - {}'.format(self.title, self.event_door.strftime('%A %B %d'))
+        return '{} - {}'.format(self.title, self.event_door.strftime('%B %d, %Y'))
     def get_media_dir_path(self):
         if self.media_dir:
             return os.getcwd() + '/app/static/' + self.media_dir
@@ -70,7 +73,12 @@ class Event(db.Model):
         else:
             return None
     def about_html(self):
-        return Markup(self.about.replace('\n', '</p><p>'))
+        if self.about:
+            return Markup(self.about.replace('\n', '</p><p>'))
+        else:
+            return ''
+    def has_jams(self):
+        return len(self.jams) > 0
 
 class Artist(db.Model):
     id = db.Column(db.Integer, primary_key=True)

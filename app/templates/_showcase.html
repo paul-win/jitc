@@ -1,15 +1,36 @@
 <div class="carousel-item {% if event.active_item %}active{% endif %}">
     {% if event.cover_card_path() %}
     <img src="{{ url_for('static', filename = event.cover_card_path())}}" class="d-block w-100" alt="{{ event.verbose_title() }}">
+    {% else %} 
+    {% if event.cover_photo_path() %}
+    <img src="{{ url_for('static', filename = event.cover_photo_path())}}" class="d-block w-100" alt="{{ event.verbose_title() }}">
+    <div class="card-img-overlay">
+        <br>
+        <br>
+        <h1 class="card-title">Jam in the Can presents</h1>
+        <h1 class="card-title">{{ event.title }}</h1>
+        {% if event.upcoming() %}
+        <h3 class="card-title">@ {{ event.venue.name }} {{ event.event_door.strftime('%A %B %-d, %Y %-I:%M%p') }}</h3>
+        {% else %}
+        <h3 class="card-title">@ {{ event.venue.name }} {{ event.event_door.strftime('%B %-d, %Y') }}</h3>
+        {% endif %}
+    </div>
+    {% endif %}
     {% endif %}
     <div class="container">
         <div class="carousel-caption text-end non-relative-pos">
-            <div class="btn-group" role="group" aria-label="Basic example">
+            <div class="btn-group" role="group">
                 {% if event.ticket_link and event.upcoming() %}
                 <a class="btn btn-lg btn-primary" href="{{ event.ticket_link }}" target="_blank">Get Tix</a>
                 {% endif %}
                 <a class="btn btn-lg btn-secondary" style="z-index: 2;"
-                href="{{ url_for('event', year=event.event_door.year, month=event.event_door.month, day=event.event_door.day, artist=event.artist.safe_name()) }}">Learn more</a>
+                href="{{ url_for('event', year=event.event_door.year, month=event.event_door.month, day=event.event_door.day, artist=event.artist.safe_name()) }}">
+                {% if event.has_jams() %}
+                Check the Jam
+                {% else %}
+                Learn more
+                {% endif %}
+                </a>
             </div>
         </div>
     </div>

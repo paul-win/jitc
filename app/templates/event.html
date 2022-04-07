@@ -1,15 +1,22 @@
 {% extends "base.html" %}
-{% block page_desc %}event.verbose_title(){% endblock %}
+{% block page_desc %}{{event.verbose_title(False)}}{% endblock %}
 <!-- {% block body_style %}style="background-image: url({{ url_for('static', filename=event.cover_photo_path()) }});"{% endblock %} -->
 
 {% block content %}
-<div class="card bg-dark text-white">
+<div class="card bg-dark">
     {% if event.cover_photo_path() %}
     <img class="card-img" src="{{ url_for('static', filename = event.cover_photo_path())}}" alt="{{ event.verbose_title() }}">
     {% endif %}<!-- <img src="" class="d-block w-100" alt=""> -->
     <div class="card-img-overlay">
-        <h1 class="card-title"><small></small>Jam in the Can presents:</small> {{ event.title }}</h1>
+        <br>
+        <br>
+        <h1 class="card-title">Jam in the Can presents</h1>
+        <h1 class="card-title">{{ event.title }}</h1>
+        {% if event.upcoming() %}
         <h3 class="card-title">@ {{ event.venue.name }} {{ event.event_door.strftime('%A %B %-d, %Y %-I:%M%p') }}</h3>
+        {% else %}
+        <h3 class="card-title">@ {{ event.venue.name }} {{ event.event_door.strftime('%B %-d, %Y') }}</h3>
+        {% endif %}
     </div>
 </div>
 
@@ -50,6 +57,7 @@
 </div>
 <hr>
 {% endif %}
+{% if event.about_html() %}
 <div class="row">
     <div class="col-lg-2 col-md-1"></div>
     <div class="col-lg-8 col-md-10">
@@ -57,4 +65,5 @@
     </div>
     <div class="col-lg-2 col-md-1"></div>
 </div>
+{% endif %}
 {% endblock %}
