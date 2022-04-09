@@ -1,4 +1,4 @@
-from flask import redirect, render_template, url_for
+from flask import redirect, render_template, url_for, json
 from sqlalchemy import func
 from datetime import datetime
 from app import app
@@ -26,7 +26,8 @@ def event(year, month, day, artist):
     if not ev:
         return redirect(url_for('.index'))
     else:
-        return render_template('event.html', title=ev.page_title(), event=ev, background=ev.cover_photo_path())
+        jams = json.dumps(ev.jams_to_json())
+        return render_template('event.html', title=ev.page_title(), event=ev, background=ev.cover_photo_path(), jams=jams)
 
 @app.route('/jams')
 def jams():

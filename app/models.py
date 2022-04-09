@@ -1,4 +1,5 @@
 from app import db
+from flask import url_for
 from datetime import datetime, timedelta
 import os
 from markupsafe import escape, Markup
@@ -26,11 +27,11 @@ class Event(db.Model):
         return '<Event: {}-{}>'.format(self.title, self.event_door)
     def verbose_title(self, include_time=True):
         if include_time:
-            return 'Jam in the Can presents: {} @ {}, {}'.format(self.title, self.venue.name, self.event_door.strftime('%A %B %d, %Y %I:%M%p'))
+            return 'Jam in the Can presents: {} @ {}, {}'.format(self.title, self.venue.name, self.event_door.strftime('%A %B %-d, %Y %-I:%M%p'))
         else:
-            return 'Jam in the Can presents: {} @ {}, {}'.format(self.title, self.venue.name, self.event_door.strftime('%B %d, %Y'))
+            return 'Jam in the Can presents: {} @ {}, {}'.format(self.title, self.venue.name, self.event_door.strftime('%B %-d, %Y'))
     def page_title(self):
-        return '{} - {}'.format(self.title, self.event_door.strftime('%B %d, %Y'))
+        return '{} - {}'.format(self.title, self.event_door.strftime('%B %-d, %Y'))
     def get_media_dir_path(self):
         if self.media_dir:
             return os.getcwd() + '/app/static/' + self.media_dir
@@ -77,8 +78,12 @@ class Event(db.Model):
             return Markup(self.about.replace('\n', '</p><p>'))
         else:
             return ''
+    def jam_album_title(self):
+        return 'Jam in the Can Live {}'.format(self.event_door.strftime('%-m-%-d-%Y'))
     def has_jams(self):
         return len(self.jams) > 0
+    def jams_to_json(self):
+        return [jam.to_json() for jam in self.jams]
 
 class Artist(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -139,3 +144,11 @@ class Jam(db.Model):
 
     def __repr__(self):
         return '<Jam: {}-{}.{}>'.format(self.artist.name, self.track_num, self.title)
+    def to_json(self):
+        return {
+            "name": self.title,
+            "artist": self.artist.name,
+            "album": self.event.jam_album_title(),
+            "url": url_for('static', filename=self.event.media_dir + self.file),
+            # "cover_art_url": "../album-art/we-are-to-answer.jpg"
+        }

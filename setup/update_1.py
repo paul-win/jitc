@@ -45,7 +45,7 @@ db.session.add(calumet)
 db.session.commit()
 
 #create jams
-j1 = Jam(event=calumet, artist=cal, track_num=1, title='Somewhere', length='00:03:48', file='Somewhere.mp3')
+j1 = Jam(event=calumet, artist=cal, track_num=1, title='Somewhere', length='00:03:48', file='somewhere.mp3')
 j2 = Jam(event=calumet, artist=cal, track_num=2, title='Straight to the Bottom', length='00:04:42', file='straight_to_the_bottom.mp3')
 j3 = Jam(event=calumet, artist=cal, track_num=3, title='This is Wrong', length='00:05:00', file='this_is_wrong.mp3')
 j4 = Jam(event=calumet, artist=cal, track_num=4, title='Lil Bit', length='00:03:32', file='lil_bit.mp3')

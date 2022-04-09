@@ -1,12 +1,17 @@
 {% extends "base.html" %}
 {% block page_desc %}{{event.verbose_title(False)}}{% endblock %}
+{% block head_include %}
+{% if event.has_jams() %}
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/amplitudejs@5.3.2/dist/amplitude.js"></script>
+{% endif %}
+{% endblock %}
 <!-- {% block body_style %}style="background-image: url({{ url_for('static', filename=event.cover_photo_path()) }});"{% endblock %} -->
 
 {% block content %}
-<div class="card bg-dark">
+<!-- <div class="card bg-dark">
     {% if event.cover_photo_path() %}
     <img class="card-img" src="{{ url_for('static', filename = event.cover_photo_path())}}" alt="{{ event.verbose_title() }}">
-    {% endif %}<!-- <img src="" class="d-block w-100" alt=""> -->
+    {% endif %}
     <div class="card-img-overlay">
         <br>
         <br>
@@ -18,9 +23,95 @@
         <h3 class="card-title">@ {{ event.venue.name }} {{ event.event_door.strftime('%B %-d, %Y') }}</h3>
         {% endif %}
     </div>
-</div>
-
+</div> -->
+<h2 class="text-center">Jam in the Can presents</h2>
+<h1 class="display-1 text-center">{{ event.title }}</h1>
+{% if event.upcoming() %}
+<h3 class="text-center">@ {{ event.venue.name }} {{ event.event_door.strftime('%A %B %-d, %Y %-I:%M%p') }}</h3>
+{% else %}
+<h3 class="text-center">@ {{ event.venue.name }} {{ event.event_door.strftime('%B %-d, %Y') }}</h3>
+{% endif %}
 <hr>
+<div class="row">
+    <div class="col-lg-2 col-md-1"></div>
+    <div class="col-lg-8 col-md-10">
+        <div id="jam-player">
+            <div id="amplitude-player">
+
+                <!-- Left Side Player -->
+                <div id="amplitude-left">
+                    <img amplitude-song-info="{{ url_for('static', filename = event.cover_photo_path())}}" amplitude-main-song-info="true"/>
+                    <div id="player-left-bottom">
+                        <div id="time-container">
+                            <span class="current-time">
+                                <span class="amplitude-current-minutes" ></span>:<span class="amplitude-current-seconds"></span>
+                            </span>
+                            <div id="progress-container">
+                                <input type="range" class="amplitude-song-slider"/>
+                                <progress id="song-played-progress" class="amplitude-song-played-progress"></progress>
+                                <progress id="song-buffered-progress" class="amplitude-buffered-progress" value="0"></progress>
+                            </div>
+                            <span class="duration">
+                                <span class="amplitude-duration-minutes"></span>:<span class="amplitude-duration-seconds"></span>
+                            </span>
+                        </div>
+        
+                        <div id="control-container">
+                            <div id="central-control-container">
+                                <div id="central-controls">
+                                    <div class="amplitude-prev" id="previous"></div>
+                                    <div class="amplitude-play-pause" id="play-pause"></div>
+                                    <div class="amplitude-next" id="next"></div>
+                                </div>
+                            </div>
+        
+                            <div id="volume-container">
+                                <div class="volume-controls">
+                                    <div class="amplitude-mute amplitude-not-muted"></div>
+                                    <input type="range" class="amplitude-volume-slider"/>
+                                    <div class="ms-range-fix"></div>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <div id="meta-container">
+                            <span data-amplitude-song-info="name" class="song-name"></span>
+        
+                            <div class="song-artist-album">
+                                <span data-amplitude-song-info="artist"></span>
+                                <span data-amplitude-song-info="album"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <div id="amplitude-right">
+                    {% for jam in event.jams %}
+                    <div class="song amplitude-song-container amplitude-play-pause" data-amplitude-song-index="{{ jam.track_num - 1 }}">
+                        <div class="song-now-playing-icon-container">
+                            <div class="play-button-container">
+          
+                            </div>
+                            <img class="now-playing" src="https://521dimensions.com/img/open-source/amplitudejs/blue-player/now-playing.svg"/>
+                        </div>
+                        <div class="song-meta-data">
+                            <span class="song-title">{{ jam.title }}</span>
+                            <span class="song-artist">{{ jam.artist.name }}</span>
+                        </div>
+                        <a href="https://switchstancerecordings.bandcamp.com/track/risin-high-feat-raashan-ahmad" class="bandcamp-link" target="_blank">
+                            <img class="bandcamp-grey" src="https://521dimensions.com/img/open-source/amplitudejs/blue-player/bandcamp-grey.svg"/>
+                            <img class="bandcamp-white" src="https://521dimensions.com/img/open-source/amplitudejs/blue-player/bandcamp-white.svg"/>
+                        </a>
+                        <span class="song-duration">{{ jam.length }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+                  
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2 col-md-1"></div>
+</div>
 {% if event.upcoming() %}
 <div class="row">
     <div class="col-lg-2 col-md-1"></div>
@@ -66,4 +157,12 @@
     <div class="col-lg-2 col-md-1"></div>
 </div>
 {% endif %}
+{% endblock %}
+
+{% block scripts %} 
+{{ super() }}
+<script id="jams" type="application/json">
+    {{ jams|safe }}
+</script>
+<script src="{{ url_for('static', filename='js/player.js') }}"></script>
 {% endblock %}
