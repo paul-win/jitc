@@ -40,3 +40,7 @@ def support():
 @app.route('/mission')
 def mission():
     return render_template('mission.html', title='We showcase local Cincinnati artists with the goal of supporting the next generation')
+
+@app.route('/store')
+def store():
+    return render_template('store.html', title="Shop merchandise to support the Jam in the Can mission")
