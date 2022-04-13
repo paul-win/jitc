@@ -5,6 +5,8 @@
 #add cover.jpg to static/media/qch/ folder (create folder)
 #create calumet media folder static/media/calumet_9_3_2021/
 #copy tracks into folder
+#create almost infinite folder static/media/the_almost_infinite_8_6_2021
+#copy tracks into folder
 
 #MYSQL setup:
 
@@ -20,12 +22,14 @@
 
 #add media_dir path to qch venue record
 v = Venue.query.get(1)
+#ensure v = qch
 v.media_dir = 'media/qch/'
 db.session.add(v)
 db.session.commit()
 
 #remove static/ from media_dir for cliftones events
 e = Event.query.get(1)
+#ensure e = cliftones
 e.media_dir = e.media_dir.replace('static/', '')
 db.session.add(e)
 db.session.commit()
@@ -62,4 +66,26 @@ j14 = Jam(event=calumet, artist=cal, track_num=14, title='Change', length='00:03
 j15 = Jam(event=calumet, artist=cal, track_num=15, title='Idaho', length='00:05:22', file='idaho.mp3')
 
 db.session.add_all([j1,j2,j3,j4,j5,j6,j7,j8,j9,j10,j11,j12,j13,j14,j15])
+db.session.commit()
+
+#almost infinite set up
+tai = Artist(name="The Almost Infinite")
+db.session.add(tai)
+db.session.commit()
+
+door = datetime(2021, 8, 6)
+tai_e = Event(title="The Almost Infinite", event_door=door, artist=tai, venue=qch)
+tai_e.media_dir = 'media/the_almost_infinite_8_6_2021/'
+db.session.add(tai_e)
+db.session.commit()
+
+j1 = Jam(event=tai_e, artist=tai, track_num=1, title='Nameless', length='00:02:09', file='Nameless.mp3')
+j2 = Jam(event=tai_e, artist=tai, track_num=2, title='See You in Hell', length='00:03:33', file='See_You_in_Hell.mp3')
+j3 = Jam(event=tai_e, artist=tai, track_num=3, title='Get Out', length='00:04:49', file='Get_Out.mp3')
+j4 = Jam(event=tai_e, artist=tai, track_num=4, title='Family History', length='00:05:34', file='Family_History.mp3')
+j5 = Jam(event=tai_e, artist=tai, track_num=5, title='Long Brown Hair', length='00:02:25', file='Long_Brown_Hair.mp3')
+j6 = Jam(event=tai_e, artist=tai, track_num=6, title='Tried So Hard', length='00:05:04', file='Tried_So_Hard.mp3')
+j7 = Jam(event=tai_e, artist=tai, track_num=7, title='Monster', length='00:05:01', file='Monster.mp3')
+
+db.session.add_all([j1,j2,j3,j4,j5,j6,j7])
 db.session.commit()
