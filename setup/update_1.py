@@ -7,6 +7,10 @@
 #copy tracks into folder
 #create almost infinite folder static/media/the_almost_infinite_8_6_2021
 #copy tracks into folder
+#create slow glows folder static/media/slow_glows_3_4_2022
+#copy tracks into folder
+#create dead humor folder static/media/dead_humor_7_9_2021
+#copy tracks into folder
 
 #MYSQL setup:
 
@@ -89,3 +93,49 @@ j7 = Jam(event=tai_e, artist=tai, track_num=7, title='Monster', length='00:05:01
 
 db.session.add_all([j1,j2,j3,j4,j5,j6,j7])
 db.session.commit()
+
+#slow glows setup
+sg = Artist(name="Slow Glows")
+db.session.add(sg)
+db.session.commit()
+
+door = datetime(2022, 3, 4)
+sg_e = Event(title="Slow Glows", event_door=door, artist=sg, venue=qch)
+sg_e.media_dir = 'media/slow_glows_3_4_2022/'
+db.session.add(sg_e)
+db.session.commit()
+
+j1 = Jam(event=sg_e, artist=sg, track_num=1, title='Introduction/Jam in the Can Update', length='00:02:51', file='Introduction_Jam_in_the_Can_Update.mp3')
+j2 = Jam(event=sg_e, artist=sg, track_num=2, title='December', length='00:04:58', file='December.mp3')
+j3 = Jam(event=sg_e, artist=sg, track_num=3, title='Spiderland', length='00:04:33', file='Spiderland.mp3')
+j4 = Jam(event=sg_e, artist=sg, track_num=4, title='Geode', length='00:05:48', file='Geode.mp3')
+j5 = Jam(event=sg_e, artist=sg, track_num=5, title='Daydreamer', length='00:04:01', file='Daydreamer.mp3')
+j6 = Jam(event=sg_e, artist=sg, track_num=6, title='Sigh', length='00:05:14', file='Sigh.mp3')
+j7 = Jam(event=sg_e, artist=sg, track_num=7, title='Mosaic', length='00:06:09', file='Mosaic.mp3')
+j8 = Jam(event=sg_e, artist=sg, track_num=8, title='The End', length='00:08:35', file='The_End.mp3')
+j9 = Jam(event=sg_e, artist=sg, track_num=9, title='Cast a Shadow', length='00:05:34', file='Cast_a_Shadow.mp3')
+
+
+db.session.add_all([j1,j2,j3,j4,j5,j6,j7,j8,j9])
+db.session.commit()
+
+
+#dead humor setup
+dh = Artist(name="Dead Humor")
+db.session.add(dh)
+db.session.commit()
+
+door = datetime(2021, 7, 9)
+dh_e = Event(title="Dead Humor", event_door=door, artist=dh, venue=qch)
+dh_e.media_dir = 'media/dead_humor_7_9_2021/'
+db.session.add(dh_e)
+db.session.commit()
+
+j1 = Jam(event=dh_e, artist=dh, track_num=1, title="Jam Medley", length="00:22:40", file="Jam_Medley.mp3")
+
+
+db.session.add(j1)
+db.session.commit()
+
+
+
