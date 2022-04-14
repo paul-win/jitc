@@ -148,7 +148,7 @@ db.session.commit()
 door = datetime(2021, 12, 4)
 ejfd_e = Event(title="Ernie Johnson From Detroit", event_door=door, artist=ejfd, venue=qch)
 ejfd_e.media_dir = 'media/ejfd_12_4_2021/'
-db.session.add(dh_e)
+db.session.add(ejfd_e)
 db.session.commit()
 
 j1 = Jam(event=ejfd_e, artist=ejfd, track_num=1, title='Tony Allen Pro Skater II', length='00:09:27', file='Tony_Allen_Pro_Skater_II.mp3')
