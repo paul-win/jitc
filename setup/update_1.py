@@ -11,6 +11,8 @@
 #copy tracks into folder
 #create dead humor folder static/media/dead_humor_7_9_2021
 #copy tracks into folder
+#create EJFD folder static/media/ejfd_12_4_2021
+#copy tracks into folder
 
 #MYSQL setup:
 
@@ -25,10 +27,10 @@
 #PYTHON setup:
 
 #add media_dir path to qch venue record
-v = Venue.query.get(1)
-#ensure v = qch
-v.media_dir = 'media/qch/'
-db.session.add(v)
+qch = Venue.query.get(1)
+#ensure == qch
+qch.media_dir = 'media/qch/'
+db.session.add(qch)
 db.session.commit()
 
 #remove static/ from media_dir for cliftones events
@@ -106,10 +108,10 @@ db.session.add(sg_e)
 db.session.commit()
 
 j1 = Jam(event=sg_e, artist=sg, track_num=1, title='Introduction/Jam in the Can Update', length='00:02:51', file='Introduction_Jam_in_the_Can_Update.mp3')
-j2 = Jam(event=sg_e, artist=sg, track_num=2, title='December', length='00:04:58', file='December.mp3')
+j2 = Jam(event=sg_e, artist=sg, track_num=2, title='December', length='00:04:57', file='December.mp3')
 j3 = Jam(event=sg_e, artist=sg, track_num=3, title='Spiderland', length='00:04:33', file='Spiderland.mp3')
-j4 = Jam(event=sg_e, artist=sg, track_num=4, title='Geode', length='00:05:48', file='Geode.mp3')
-j5 = Jam(event=sg_e, artist=sg, track_num=5, title='Daydreamer', length='00:04:01', file='Daydreamer.mp3')
+j4 = Jam(event=sg_e, artist=sg, track_num=4, title='Geode', length='00:05:47', file='Geode.mp3')
+j5 = Jam(event=sg_e, artist=sg, track_num=5, title='Daydreamer', length='00:04:00', file='Daydreamer.mp3')
 j6 = Jam(event=sg_e, artist=sg, track_num=6, title='Sigh', length='00:05:14', file='Sigh.mp3')
 j7 = Jam(event=sg_e, artist=sg, track_num=7, title='Mosaic', length='00:06:09', file='Mosaic.mp3')
 j8 = Jam(event=sg_e, artist=sg, track_num=8, title='The End', length='00:08:35', file='The_End.mp3')
@@ -138,4 +140,30 @@ db.session.add(j1)
 db.session.commit()
 
 
+#EJFD setup
+ejfd = Artist(name="Ernie Johnson From Detroit")
+db.session.add(ejfd)
+db.session.commit()
 
+door = datetime(2021, 12, 4)
+ejfd_e = Event(title="Ernie Johnson From Detroit", event_door=door, artist=ejfd, venue=qch)
+ejfd_e.media_dir = 'media/ejfd_12_4_2021/'
+db.session.add(dh_e)
+db.session.commit()
+
+j1 = Jam(event=ejfd_e, artist=ejfd, track_num=1, title='Tony Allen Pro Skater II', length='00:09:27', file='Tony_Allen_Pro_Skater_II.mp3')
+j2 = Jam(event=ejfd_e, artist=ejfd, track_num=2, title='Skylode', length='00:07:47', file='Skylode.mp3')
+j3 = Jam(event=ejfd_e, artist=ejfd, track_num=3, title='Heaven', length='00:08:07', file='Heaven.mp3')
+j4 = Jam(event=ejfd_e, artist=ejfd, track_num=4, title='12 Fish', length='00:09:03', file='12_Fish.mp3')
+j5 = Jam(event=ejfd_e, artist=ejfd, track_num=5, title='Give It Up (The Crusaders)', length='00:05:20', file='Give_It_Up.mp3')
+j6 = Jam(event=ejfd_e, artist=ejfd, track_num=6, title='Red Foxxx', length='00:07:33', file='Red_Foxxx.mp3')
+j7 = Jam(event=ejfd_e, artist=ejfd, track_num=7, title="Walt's First Trip (Ohio Players)", length='00:06:17', file='Walts_First_Trip.mp3')
+j8 = Jam(event=ejfd_e, artist=ejfd, track_num=8, title='Murrgenta', length='00:07:28', file='Murrgenta.mp3')
+j9 = Jam(event=ejfd_e, artist=ejfd, track_num=9, title='African Pop Session (Manu Dibango)', length='00:06:06', file='African_Pop_Session.mp3')
+j10 = Jam(event=ejfd_e, artist=ejfd, track_num=10, title='Roy Tailors Uniform Co.', length='00:07:11', file='Roy_Tailors_Uniform_Co.mp3')
+j11 = Jam(event=ejfd_e, artist=ejfd, track_num=11, title='Tiddy Bounce', length='00:10:24', file='Tiddy_Bounce.mp3')
+j12 = Jam(event=ejfd_e, artist=ejfd, track_num=12, title="Ram's Horn", length='00:08:13', file='Rams_Horn.mp3')
+j13 = Jam(event=ejfd_e, artist=ejfd, track_num=13, title='Unicorn (Dizzy Gillespie)', length='00:06:08', file='Unicorn.mp3')
+
+db.session.add_all([j1,j2,j3,j4,j5,j6,j7,j8,j9,j10,j11,j12,j13])
+db.session.commit()
