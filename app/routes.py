@@ -7,7 +7,7 @@ from app.models import Event
 @app.route('/')
 @app.route('/index')
 def index():
-    events = Event.query.order_by(Event.updated.desc()).limit(5).all()
+    events = Event.query.order_by(Event.event_door.desc()).limit(5).all()
     if len(events):
         events[0].active_item = True
     return render_template('index.html', title='A non-profit org dedicated to fostering musical arts in Cincinnati, OH', events=events)

@@ -5,31 +5,14 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/amplitudejs@5.3.2/dist/amplitude.js"></script>
 {% endif %}
 {% endblock %}
-<!-- {% block body_style %}style="background-image: url({{ url_for('static', filename=event.cover_photo_path()) }});"{% endblock %} -->
 
 {% block content %}
-<!-- <div class="card bg-dark">
-    {% if event.cover_photo_path() %}
-    <img class="card-img" src="{{ url_for('static', filename = event.cover_photo_path())}}" alt="{{ event.verbose_title() }}">
-    {% endif %}
-    <div class="card-img-overlay">
-        <br>
-        <br>
-        <h1 class="card-title">Jam in the Can presents</h1>
-        <h1 class="card-title">{{ event.title }}</h1>
-        {% if event.upcoming() %}
-        <h3 class="card-title">@ {{ event.venue.name }} {{ event.event_door.strftime('%A %B %-d, %Y %-I:%M%p') }}</h3>
-        {% else %}
-        <h3 class="card-title">@ {{ event.venue.name }} {{ event.event_door.strftime('%B %-d, %Y') }}</h3>
-        {% endif %}
-    </div>
-</div> -->
 <h2 class="text-center">Jam in the Can presents</h2>
 <h1 class="display-1 text-center">{{ event.title }}</h1>
 {% if event.upcoming() %}
-<h3 class="text-center">@ {{ event.venue.name }} {{ event.event_door.strftime('%A %B %-d, %Y %-I:%M%p') }}</h3>
+<h3 class="text-center">Live @ {{ event.venue.name }} {{ event.event_door.strftime('%A %B %-d, %Y %-I:%M%p') }}</h3>
 {% else %}
-<h3 class="text-center">@ {{ event.venue.name }} {{ event.event_door.strftime('%B %-d, %Y') }}</h3>
+<h3 class="text-center">Live @ {{ event.venue.name }} {{ event.event_door.strftime('%B %-d, %Y') }}</h3>
 {% endif %}
 <hr>
 <div class="row">

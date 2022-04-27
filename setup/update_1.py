@@ -153,7 +153,7 @@ db.session.commit()
 
 j1 = Jam(event=ejfd_e, artist=ejfd, track_num=1, title='Tony Allen Pro Skater II', length='00:09:27', file='Tony_Allen_Pro_Skater_II.mp3')
 j2 = Jam(event=ejfd_e, artist=ejfd, track_num=2, title='Skylode', length='00:07:47', file='Skylode.mp3')
-j3 = Jam(event=ejfd_e, artist=ejfd, track_num=3, title='Heaven', length='00:08:07', file='Heaven.mp3')
+j3 = Jam(event=ejfd_e, artist=ejfd, track_num=3, title='Heaven (Ebo Taylor)', length='00:08:07', file='Heaven.mp3')
 j4 = Jam(event=ejfd_e, artist=ejfd, track_num=4, title='12 Fish', length='00:09:03', file='12_Fish.mp3')
 j5 = Jam(event=ejfd_e, artist=ejfd, track_num=5, title='Give It Up (The Crusaders)', length='00:05:20', file='Give_It_Up.mp3')
 j6 = Jam(event=ejfd_e, artist=ejfd, track_num=6, title='Red Foxxx', length='00:07:33', file='Red_Foxxx.mp3')
