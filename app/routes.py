@@ -14,7 +14,10 @@ def index():
 
 @app.route('/events')
 def events():
-    return render_template('under_construct.html', title='Upcoming and past events')
+    ds = str(datetime.now().date())
+    upcoming = Event.query.filter(Event.event_door >= ds).order_by(Event.event_door).all()
+    past = Event.query.filter(Event.event_door < ds).order_by(Event.event_door.desc()).all()
+    return render_template('events.html', title='Upcoming and past events', upcoming=upcoming, past=past)
 
 @app.route('/events/<int:year>/<int:month>/<int:day>/<artist>')
 def event(year, month, day, artist):

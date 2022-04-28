@@ -20,6 +20,7 @@ class Event(db.Model):
     ages = db.Column(db.String(8))
     about = db.Column(db.String(2048))
     media_dir = db.Column(db.String(128))
+    thumbnail = db.Column(db.String(64))
     active_item = False
     updated = db.Column(db.DateTime, index=True, default=datetime.utcnow, nullable=False)
 
@@ -44,12 +45,13 @@ class Event(db.Model):
         else:
             return []
     def get_file_path(self, filename):
-        dir_path = self.get_media_dir_path()
-        file_path = dir_path + filename
-        if dir_path and os.path.exists(file_path):
-            return self.media_dir + filename
-        else:
-            return ''
+        res = ''
+        if filename:
+            dir_path = self.get_media_dir_path()
+            file_path = dir_path + filename
+            if dir_path and os.path.exists(file_path):
+                res = self.media_dir + filename
+        return res
     def cover_card_path(self):
         file_path = self.get_file_path('cover_card.jpg')
         if file_path:
@@ -60,6 +62,8 @@ class Event(db.Model):
         file_path = self.get_file_path('cover.jpg')
         if file_path:
             return file_path
+        # elif self.thumbnail:
+        #     return self.get_file_path(self.thumbnail)
         else:
             file_path = self.venue.cover_photo_path()
             if file_path:

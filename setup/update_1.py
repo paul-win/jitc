@@ -2,17 +2,23 @@
 
 #add JitC-Pop-Tab-icon.png file to static/media/ folder
 #add cover.jpg file to static/media/cliftones_3_26_2022/ folder
+#add cliftones.jpg file to static/media/cliftones_3_26_2022/ folder
 #add cover.jpg to static/media/qch/ folder (create folder)
 #create calumet media folder static/media/calumet_9_3_2021/
 #copy tracks into folder
+#copy calumet_thumbnail.jpg
 #create almost infinite folder static/media/the_almost_infinite_8_6_2021
 #copy tracks into folder
+#copy almost_infinite_thumbnail.jpg
 #create slow glows folder static/media/slow_glows_3_4_2022
 #copy tracks into folder
+#copy slow_glows_thumbnail.jpg into folder
 #create dead humor folder static/media/dead_humor_7_9_2021
 #copy tracks into folder
+#copy dead_humor_thumbnail.jpg
 #create EJFD folder static/media/ejfd_12_4_2021
 #copy tracks into folder
+#copy ejfd_thumbnail.jpg into folder
 
 #MYSQL setup:
 
@@ -20,8 +26,8 @@
     ## mysql> use jitc;
     ## mysql > alter table venue add column media_dir varchar(128) after zip;
 #modify db for length field in jams table
-    ## mysql> use jitc;
     ## mysql> alter table jam add column length TIME after title;
+    ## mysql> alter table event add column thumbnail varchar(64) after media_dir;
 
 
 #PYTHON setup:
@@ -37,6 +43,7 @@ db.session.commit()
 e = Event.query.get(1)
 #ensure e = cliftones
 e.media_dir = e.media_dir.replace('static/', '')
+e.thumbnail = 'cliftones_thumbnail.jpg'
 db.session.add(e)
 db.session.commit()
 
@@ -51,6 +58,7 @@ door = datetime(2021, 9, 3)
 calumet = Event(title="Calumet", event_door=door,
 artist=cal, venue=qch)
 calumet.media_dir = 'media/calumet_9_3_2021/'
+calumet.thumbnail = 'calumet_thumbnail.jpg'
 db.session.add(calumet)
 db.session.commit()
 
@@ -82,6 +90,7 @@ db.session.commit()
 door = datetime(2021, 8, 6)
 tai_e = Event(title="The Almost Infinite", event_door=door, artist=tai, venue=qch)
 tai_e.media_dir = 'media/the_almost_infinite_8_6_2021/'
+tai_e.thumbnail = 'almost_infinite_thumbnail.jpg'
 db.session.add(tai_e)
 db.session.commit()
 
@@ -104,6 +113,7 @@ db.session.commit()
 door = datetime(2022, 3, 4)
 sg_e = Event(title="Slow Glows", event_door=door, artist=sg, venue=qch)
 sg_e.media_dir = 'media/slow_glows_3_4_2022/'
+sg_e.thumbnail = 'slow_glows_thumbnail.jpg'
 db.session.add(sg_e)
 db.session.commit()
 
@@ -130,6 +140,7 @@ db.session.commit()
 door = datetime(2021, 7, 9)
 dh_e = Event(title="Dead Humor", event_door=door, artist=dh, venue=qch)
 dh_e.media_dir = 'media/dead_humor_7_9_2021/'
+dh_e.thumbnail = 'dead_humor_thumbnail.jpg'
 db.session.add(dh_e)
 db.session.commit()
 
@@ -148,6 +159,7 @@ db.session.commit()
 door = datetime(2021, 12, 4)
 ejfd_e = Event(title="Ernie Johnson From Detroit", event_door=door, artist=ejfd, venue=qch)
 ejfd_e.media_dir = 'media/ejfd_12_4_2021/'
+ejfd_e.thumbnail = 'ejfd_thumbnail.jpg'
 db.session.add(ejfd_e)
 db.session.commit()
 

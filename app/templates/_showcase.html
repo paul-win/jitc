@@ -1,9 +1,9 @@
 <div class="carousel-item {% if event.active_item %}active{% endif %}">
     {% if event.cover_card_path() %}
-    <img src="{{ url_for('static', filename = event.cover_card_path())}}" class="d-block w-100" alt="{{ event.verbose_title() }}">
+    <img src="{{ url_for('static', filename = event.cover_card_path()) }}" class="d-block w-100" alt="{{ event.verbose_title() }}">
     {% else %} 
     {% if event.cover_photo_path() %}
-    <img src="{{ url_for('static', filename = event.cover_photo_path())}}" class="d-block w-100" alt="{{ event.verbose_title() }}">
+    <img src="{{ url_for('static', filename = event.cover_photo_path()) }}" class="d-block w-100" alt="{{ event.verbose_title() }}">
     <div class="card-img-overlay">
         <br>
         <br>
