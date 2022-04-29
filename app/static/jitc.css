@@ -23,6 +23,16 @@ header, strong {
     font-family:'Teko', sans-serif;
 }
 
+table {
+  border-color: #C9CBA3!important;
+}
+th {
+  color: #C9CBA3;
+}
+td {
+  color: #FFE1AB;
+}
+
 .jitc-text {
     color: #FFE1AB!important;
 }
@@ -118,7 +128,8 @@ div#amplitude-player {
     margin-bottom: 20px;
     display: flex;
     max-width: 900px; 
-    border-radius: 1em; }
+    border-radius: 1em;
+    overflow: hidden; }
   
   /* Small only */
   @media screen and (max-width: 39.9375em) {
@@ -164,7 +175,7 @@ div#amplitude-player {
         height: auto; } }
   div#amplitude-right {
     padding: 0px;
-    overflow-y: scroll;
+    overflow-y: auto;
     width: 50%;
     display: flex;
     flex-direction: column; }

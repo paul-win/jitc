@@ -19,6 +19,9 @@
 #create EJFD folder static/media/ejfd_12_4_2021
 #copy tracks into folder
 #copy ejfd_thumbnail.jpg into folder
+#create spherical agenda folder static/media/sa_5_13_2022
+#copy spherical_agenda_thumbnail.png into folder
+#copy cover.jpg
 
 #MYSQL setup:
 
@@ -178,4 +181,26 @@ j12 = Jam(event=ejfd_e, artist=ejfd, track_num=12, title="Ram's Horn", length='0
 j13 = Jam(event=ejfd_e, artist=ejfd, track_num=13, title='Unicorn (Dizzy Gillespie)', length='00:06:08', file='Unicorn.mp3')
 
 db.session.add_all([j1,j2,j3,j4,j5,j6,j7,j8,j9,j10,j11,j12,j13])
+db.session.commit()
+
+#Spherical Agenda setup
+sa = Artist(name="Spherical Agenda")
+db.session.add(sa)
+db.session.commit()
+
+door = datetime(2022, 5, 13, 19, 00, 00)
+tix_link = "https://www.cincyticket.com/eventperformances.asp?evt=5758"
+abt = """Jam in the Can presents Cincinnati's own jazz fusion rock quartet Spherical Agenda at Queen City Hemp. This two set show will be recorded live and proceeds to support local arts and the next generation of artists.
+
+SPHERICAL AGENDA is a jazz-rock fusion band consisting of the midwest region's top musicians. Hailing from Cincinnati, OH, their sound not only draws from the cutting edge of today's fusion, but harkens back to the reckless abandon and pure energy of groups like Tony Williams Lifetime, Mahavishnu Orchestra, and Return to Forever. Featuring Matt Wiles on bass, Brandon Coleman on guitar, Ben Tweedt on keyboards and Devon Leigh on drums, Spherical Agenda is a powerhouse band whose unique chemistry gives rise to infectious grooves, daring solos, and captivating energy.
+"""
+
+qch = Venue.query.first()
+#make sure qch
+sa_e = Event(title="Spherical Agenda", event_door=door,
+artist=sa, venue=qch, price=20,
+ticket_link=tix_link, ages="18+", about=abt)
+sa_e.media_dir = "media/sa_5_13_2022/"
+sa_e.thumbnail = "spherical_agenda_thumbnail.png"
+db.session.add(sa_e)
 db.session.commit()
