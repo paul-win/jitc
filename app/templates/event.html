@@ -23,7 +23,7 @@
 
             <!-- Left Side Player -->
             <div id="amplitude-left">
-                <img amplitude-song-info="{{ url_for('static', filename = event.cover_photo_path())}}" amplitude-main-song-info="true"/>
+                <img amplitude-song-info="cover_art_url" class="album-art" src="{{ url_for('static', filename = event.get_file_path(event.thumbnail))}}" amplitude-main-song-info="true"/>
                 <div id="player-left-bottom">
                     <div id="time-container">
                         <span class="current-time">
